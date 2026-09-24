@@ -7,11 +7,81 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- OPEN INVITATION -->
+<div id="openingScreen">
 
-    <!-- Giao diện đầu tiên -->
+    <!-- Animated background -->
+    <div class="opening-glow glow-1"></div>
+    <div class="opening-glow glow-2"></div>
+    <div class="opening-glow glow-3"></div>
+
+    <!-- Decorative flowers -->
+    <div class="flower flower-top-left">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="flower flower-bottom-right">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Gold frame -->
+    <div class="opening-frame"></div>
+
+    <!-- Falling petals -->
+    <div id="petals"></div>
+
+    <!-- Main content -->
+    <div class="opening-content">
+        <div class="opening-small">
+            WEDDING INVITATION
+        </div>
+        <div class="opening-monogram">
+            One Love
+        </div>
+        <div class="opening-names">
+            <div>HỒNG QUÂN</div>
+            <span>&</span>
+            <div>THU HIỀN</div>
+        </div>
+        <div class="opening-line">
+            <span></span>
+            <i>28</i>
+            <span></span>
+        </div>
+        <div class="opening-date">
+            NOVEMBER 2026
+        </div>
+        <div class="opening-message">
+            TRÂN TRỌNG KÍNH MỜI
+        </div>
+        <button id="openInvitation">
+            <span>OPEN</span>
+        </button>
+        <div class="opening-hint">
+            (Nhấn để mở thiệp nha)
+        </div>
+    </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="weddingMusic" loop>
+    <source src="music/BanDoi.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Giao diện đầu tiên -->
     <section class="hero">
         <div class="hero__bg">
             <img src="images/giaodiendautien.png" alt="Cover" onerror="this.style.display='none'">
@@ -61,13 +131,11 @@
                 <div></div><div></div><div></div><div></div><div></div><div></div><div>1</div>
                 <div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
                 <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div>
-                <div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div class="heart">28</div>
-                <div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div>
+                <div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div>
+                <div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div class="heart">28</div><div>29</div>
                 <div>30</div><div></div><div></div><div></div><div></div><div></div><div></div>
-            </div>
-            
+            </div>            
             <img src="images/chuadatten.png" alt="Flower" class="decor decor-bot-center reveal" style="transition-delay: 0.3s;">
-
             <div class="parents-row reveal" style="transition-delay: 0.2s;">
                 <div>
                     <h4>NHÀ GÁI</h4>

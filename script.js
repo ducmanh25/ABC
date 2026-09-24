@@ -1,3 +1,49 @@
+// OPEN INVITATION + MUSIC
+const openingScreen = document.getElementById("openingScreen");
+const openInvitation = document.getElementById("openInvitation");
+const weddingMusic = document.getElementById("weddingMusic");
+
+// FALLING PETALS
+const petalsContainer = document.getElementById("petals");
+if (petalsContainer) {
+    for (let i = 0; i < 18; i++) {
+        const petal = document.createElement("span");
+        petal.className = "petal";
+        petal.style.left = Math.random() * 100 + "%";
+        petal.style.animationDuration =
+            (7 + Math.random() * 8) + "s";
+        petal.style.animationDelay =
+            (Math.random() * 8) + "s";
+        petal.style.opacity =
+            (0.25 + Math.random() * 0.45).toString();
+        petal.style.transform =
+            "rotate(" + Math.random() * 360 + "deg)";
+        petalsContainer.appendChild(petal);
+    }
+}
+
+// OPEN INVITATION
+if (openInvitation) {
+    openInvitation.addEventListener("click", function () {
+        // Start music
+        if (weddingMusic) {
+            weddingMusic.volume = 0.8;
+            weddingMusic.play().catch(function (error) {
+                console.log(
+                    "Music could not start:",
+                    error
+                );
+            });
+        }
+        // Close opening screen
+        if (openingScreen) {
+            openingScreen.classList.add("hide");
+        }
+        // Enable scrolling
+        document.body.style.overflow = "auto";
+    });
+}
+
 // 1. Animation Scroll Reveal
 const els = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
@@ -12,7 +58,7 @@ els.forEach(el => io.observe(el));
 
 // 2. Logic Ghép ảnh Canvas & Gửi Dữ liệu
 const API_URL = "https://script.google.com/mc";
-MR8ZaHuWLBrpDd3NESLt7n9t-eMbwEVUAQNY396ge
+// MR8ZaHuWLBrpDd3NESLt7n9t-eMbwEVUAQNY396ge
 let imageFile = null;
 
 document.getElementById('guestImage').addEventListener('change', function(e) {
