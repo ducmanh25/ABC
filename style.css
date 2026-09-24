@@ -393,38 +393,194 @@ body { background: var(--bg-color); color: var(--text-dark); font-family: 'Cormo
 }
 
 /* == OPEN BUTTON == */
+/* =========================================================
+   WAX SEAL OPEN BUTTON
+   ========================================================= */
+
 #openInvitation {
     position: relative;
-    min-width: 190px;
-    padding: 15px 38px;
-    border: 1px solid #d5aa64;
-    border-radius: 50px;
+    width: 118px;
+    height: 118px;
+    min-width: 118px;
+    min-height: 118px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    overflow: visible;
     color: #f7e6ce;
     background:
-        linear-gradient(
-            100deg,
-            rgba(255,255,255,0.04),
-            rgba(180,105,75,0.22),
-            rgba(255,255,255,0.04)
+        radial-gradient(
+            circle at 32% 28%,
+            #b94b59 0%,
+            #8d2636 28%,
+            #741624 58%,
+            #55101a 82%,
+            #3e0b13 100%
         );
-    font-family:
-        Georgia,
-        serif;
-    font-size: 15px;
-    letter-spacing: 0.25em;
-    cursor: pointer;
-    overflow: hidden;
+
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+
     box-shadow:
-        0 0 15px rgba(212, 165, 91, 0.2),
-        inset 0 0 12px rgba(212, 165, 91, 0.08);
+        0 12px 18px rgba(0, 0, 0, 0.35),
+        0 5px 8px rgba(0, 0, 0, 0.25),
+        inset 5px 6px 10px rgba(255, 190, 170, 0.16),
+        inset -7px -9px 12px rgba(45, 3, 10, 0.35);
+
     opacity: 0;
+
     animation:
         buttonAppear 1s ease 1.35s forwards,
-        buttonPulse 2.5s ease-in-out 2.35s infinite;
+        waxSealFloat 3.5s ease-in-out 2.35s infinite;
+    
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
 
+
+/* Irregular wax edge */
+#openInvitation::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+
+    border-radius:
+        47% 53% 50% 48%
+        / 51% 46% 54% 49%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #a63848 0%,
+            #7b1a29 55%,
+            #4e0d16 100%
+        );
+
+    z-index: -1;
+
+    box-shadow:
+        0 7px 12px rgba(0, 0, 0, 0.3),
+        inset 2px 2px 4px rgba(255, 190, 170, 0.12),
+        inset -3px -4px 6px rgba(30, 0, 5, 0.35);
+}
+
+
+/* Inner wax ring */
+#openInvitation::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+
+    border-radius:
+        48% 52% 51% 49%
+        / 50% 47% 53% 50%;
+
+    border: 1px solid rgba(224, 139, 139, 0.32);
+
+    box-shadow:
+        inset 0 0 0 2px rgba(80, 10, 20, 0.2),
+        inset 0 0 12px rgba(35, 0, 5, 0.25),
+        0 0 5px rgba(255, 170, 150, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* OPEN text */
+#openInvitation span {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+
+    color: #f5dfbd;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+
+    text-shadow:
+        0 1px 1px rgba(255, 220, 190, 0.25),
+        0 -1px 1px rgba(60, 5, 10, 0.8);
+
+    pointer-events: none;
+}
+
+
+/* Wax highlight */
+#openInvitation span::before {
+    content: "";
+
+    position: absolute;
+
+    width: 45px;
+    height: 18px;
+
+    top: 25px;
+    left: 24px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 210, 190, 0.14),
+            transparent 70%
+        );
+
+    transform: rotate(-25deg);
+
+    pointer-events: none;
+}
+
+
+/* Hover */
+#openInvitation:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 15px 24px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(175, 55, 65, 0.35),
+        inset 5px 6px 10px rgba(255, 190, 170, 0.18),
+        inset -7px -9px 12px rgba(45, 3, 10, 0.35);
+}
+
+
+/* Press */
+#openInvitation:active {
+    transform: scale(0.94);
+
+    box-shadow:
+        0 5px 9px rgba(0, 0, 0, 0.35),
+        inset 6px 7px 13px rgba(40, 0, 5, 0.35),
+        inset -3px -3px 5px rgba(255, 170, 150, 0.08);
+}
+
+
+/* Gentle floating animation */
+@keyframes waxSealFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 /* Moving light */
@@ -606,11 +762,13 @@ body { background: var(--bg-color); color: var(--text-dark); font-family: 'Cormo
         margin-bottom: 24px;
     }
 
- #openInvitation {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+#openInvitation {
+    width: 105px;
+    height: 105px;
+    min-width: 105px;
+    min-height: 105px;
+    padding: 0;
+    font-size: 12px;
 }
     .opening-hint {
         font-size: 9px;
