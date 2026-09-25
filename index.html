@@ -37,8 +37,13 @@
         <span></span>
     </div>
 
-    <!-- Gold frame -->
+    <!-- Wedding card frame + diagonal envelope lines -->
     <div class="opening-frame"></div>
+
+    <svg class="opening-fold-lines" aria-hidden="true">
+        <line id="foldLineLeft"></line>
+        <line id="foldLineRight"></line>
+    </svg>
 
     <!-- Falling petals -->
     <div id="petals"></div>
@@ -55,21 +60,11 @@
             <div>HỒNG QUÂN</div>
             <span>&</span>
             <div>THU HIỀN</div>
+                <br>
+                <br>
         </div>
-        <div class="opening-line">
-            <span></span>
-            <i>28</i>
-            <span></span>
-        </div>
-        <div class="opening-date">
-            NOVEMBER 2026
-        </div>
-        <div class="opening-message">
-            TRÂN TRỌNG KÍNH MỜI
-        </div>
-    <button id="openInvitation">
-        <span>OPEN</span>
-    </button>
+
+        <button id="openInvitation" type="button" aria-label="Mở thiệp"></button>
         <div class="opening-hint">
             (Nhấn để mở thiệp nha)
         </div>
@@ -77,7 +72,7 @@
 </div>
 
 <!-- MUSIC -->
-<audio id="weddingMusic" loop>
+<audio id="weddingMusic" loop preload="auto" playsinline>
     <source src="music/BanDoi.mp3" type="audio/mpeg">
 </audio>
 
@@ -302,6 +297,59 @@
             <div class="script">Thank you wish love!</div>
         </div>
     </footer>
+
+    <!-- Diagonal lines focus exactly on the wax seal -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const screen = document.getElementById("openingScreen");
+        const seal = document.getElementById("openInvitation");
+        const frame = document.querySelector(".opening-frame");
+        const svg = document.querySelector(".opening-fold-lines");
+        const leftLine = document.getElementById("foldLineLeft");
+        const rightLine = document.getElementById("foldLineRight");
+
+        function updateFoldLines() {
+            if (!screen || !seal || !frame || !svg || !leftLine || !rightLine) return;
+
+            const screenRect = screen.getBoundingClientRect();
+            const frameRect = frame.getBoundingClientRect();
+            const sealRect = seal.getBoundingClientRect();
+
+            const centerX = sealRect.left + sealRect.width / 2 - screenRect.left;
+            const centerY = sealRect.top + sealRect.height / 2 - screenRect.top;
+            const leftX = frameRect.left - screenRect.left;
+            const rightX = frameRect.right - screenRect.left;
+            const startY = frameRect.top - screenRect.top + frameRect.height * 0.18;
+
+            svg.setAttribute("viewBox", "0 0 " + screenRect.width + " " + screenRect.height);
+
+            leftLine.setAttribute("x1", leftX);
+            leftLine.setAttribute("y1", startY);
+            leftLine.setAttribute("x2", centerX);
+            leftLine.setAttribute("y2", centerY);
+
+            rightLine.setAttribute("x1", rightX);
+            rightLine.setAttribute("y1", startY);
+            rightLine.setAttribute("x2", centerX);
+            rightLine.setAttribute("y2", centerY);
+        }
+
+        requestAnimationFrame(updateFoldLines);
+        setTimeout(updateFoldLines, 100);
+        setTimeout(updateFoldLines, 500);
+        window.addEventListener("resize", updateFoldLines);
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener("resize", updateFoldLines);
+        }
+
+        if (window.ResizeObserver) {
+            const observer = new ResizeObserver(updateFoldLines);
+            observer.observe(screen);
+            observer.observe(seal);
+        }
+    });
+    </script>
 
     <script src="script.js"></script>
 </body>

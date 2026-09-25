@@ -1,47 +1,62 @@
+// =========================================================
 // OPEN INVITATION + MUSIC
-const openingScreen = document.getElementById("openingScreen");
-const openInvitation = document.getElementById("openInvitation");
-const weddingMusic = document.getElementById("weddingMusic");
+// =========================================================
 
+document.addEventListener("DOMContentLoaded", function () {
+    const openingScreen = document.getElementById("openingScreen");
+    const openInvitation = document.getElementById("openInvitation");
+    const weddingMusic = document.getElementById("weddingMusic");
+
+    if (weddingMusic) {
+        weddingMusic.preload = "auto";
+        weddingMusic.setAttribute("playsinline", "");
+        weddingMusic.volume = 0.8;
+    }
+
+    if (openInvitation) {
+        openInvitation.addEventListener("click", function () {
+            if (weddingMusic) {
+                const playPromise = weddingMusic.play();
+
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(function () {
+                            console.log("Music started.");
+                        })
+                        .catch(function (error) {
+                            console.log("Music playback blocked:", error);
+                        });
+                }
+            }
+
+            if (openingScreen) {
+                openingScreen.classList.add("hide");
+            }
+
+            document.body.style.overflow = "auto";
+        });
+    }
+});
+
+// =========================================================
 // FALLING PETALS
+// =========================================================
+
 const petalsContainer = document.getElementById("petals");
+
 if (petalsContainer) {
     for (let i = 0; i < 18; i++) {
         const petal = document.createElement("span");
+
         petal.className = "petal";
         petal.style.left = Math.random() * 100 + "%";
-        petal.style.animationDuration =
-            (7 + Math.random() * 8) + "s";
-        petal.style.animationDelay =
-            (Math.random() * 8) + "s";
-        petal.style.opacity =
-            (0.25 + Math.random() * 0.45).toString();
-        petal.style.transform =
-            "rotate(" + Math.random() * 360 + "deg)";
+        petal.style.animationDuration = (7 + Math.random() * 8) + "s";
+        petal.style.animationDelay = (Math.random() * 8) + "s";
+        petal.style.opacity = (0.25 + Math.random() * 0.45).toString();
+        petal.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+
         petalsContainer.appendChild(petal);
     }
-}
-
-// OPEN INVITATION
-if (openInvitation) {
-    openInvitation.addEventListener("click", function () {
-        // Start music
-        if (weddingMusic) {
-            weddingMusic.volume = 0.8;
-            weddingMusic.play().catch(function (error) {
-                console.log(
-                    "Music could not start:",
-                    error
-                );
-            });
-        }
-        // Close opening screen
-        if (openingScreen) {
-            openingScreen.classList.add("hide");
-        }
-        // Enable scrolling
-        document.body.style.overflow = "auto";
-    });
 }
 
 // 1. Animation Scroll Reveal
